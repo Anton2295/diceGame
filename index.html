@@ -1,0 +1,90 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Dise Game</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class='stage'>
+
+		<script src="js/gameMap.js"></script>
+		<script src="js/view.js"></script>
+		<script src="js/entity.js"></script>
+		<script src="js/game.js"></script>
+		<script src="js/astar.js"></script>
+
+		<script type="text/javascript">
+
+			var namberEntityToMove = 0;
+
+			var interval = 50;
+
+
+			var WidthMap = 25;
+			var HeightMap = 25;
+
+
+
+
+			var gameMap = new GameMap(WidthMap, HeightMap);
+
+			var startEntity = new Entity('start');
+
+			startEntity.shortDescription = 'Вы';
+
+			startEntity.isPlayerContrоl = true;
+
+			{
+				let x = Math.round(Math.random() * (WidthMap - 1));
+				let y = Math.round(Math.random() * (HeightMap - 1));
+
+				gameMap.addEntity(startEntity, new Point(x, y));
+			}
+
+
+			var game = new Game(gameMap);
+
+			game.run();
+
+
+			var view = new View(gameMap);
+
+
+			view.refresh();
+
+
+
+			function getRandomMatrixArray(Width, Height) {
+				var arr = new Array();
+				for (var i = 0; i < Width; i++) {
+					arr[i] = new Array();
+					for (var j = 0; j < Height; j++) {
+						arr[i][j] = Math.round(Math.random());
+					}
+				}
+				return arr;
+			}
+
+			function getEmptyMatrixArray(Width, Height) {
+				var arr = new Array();
+				for (var i = 0; i < Width; i++) {
+					arr[i] = new Array();
+					for (var j = 0; j < Height; j++) {
+						arr[i][j] = 0;
+					}
+				}
+				return arr;
+			}
+
+
+
+
+		</script>
+	</div>
+
+
+</body>
+
+</html>
